@@ -1,6 +1,6 @@
 services:
-  php-framework-php:
-    container_name: php-framework-php
+  php-framework:
+    container_name: php-framework
     build:
       context: .
       dockerfile: Dockerfile
