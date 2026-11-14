@@ -10,5 +10,5 @@ $request = new Request();
 $router = new Router();
 $response = $router->main($request);
 
-echo $response->content
-?>
+http_response_code($response->statusCode);
+echo $response->content;
