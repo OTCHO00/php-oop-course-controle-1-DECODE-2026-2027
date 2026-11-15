@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Http;
+namespace App\Lib\Http;
 
-use App\Controllers\AbstractController;
+use App\Lib\Controllers\AbstractController;
 
 class Router {
 
-    private const string ROUTE_CONFIG_PATH = __DIR__ . '/../../config/routes.json';
+    private const string ROUTE_CONFIG_PATH = __DIR__ . '/../../../config/routes.json';
     private const string CONTROLLER_NAMESPACE = 'App\\Controllers\\';
     
     public function main(Request $request) {
@@ -88,7 +88,7 @@ class Router {
         $controllerInstance = new $controllerName();
 
         if(is_subclass_of($controllerInstance, AbstractController::class) === false) {
-            throw new \Exception('Controller ' . $controllerName . ' must extends App\Controllers\AbstractController.');
+            throw new \Exception('Controller ' . $controllerName . ' must extends App\Lib\Controllers\AbstractController.');
         }
 
         return $controllerInstance;
