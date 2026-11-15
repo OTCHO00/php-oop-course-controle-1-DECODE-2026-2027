@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Lib\\' => array($baseDir . '/src/lib'),
     'App\\' => array($baseDir . '/src'),
 );
