@@ -11,4 +11,9 @@ $router = new Router();
 $response = $router->main($request);
 
 http_response_code($response->statusCode);
+foreach($response->headers as $cle => $valeur){
+
+    header($cle.": ".$valeur);
+
+}
 echo $response->content;
