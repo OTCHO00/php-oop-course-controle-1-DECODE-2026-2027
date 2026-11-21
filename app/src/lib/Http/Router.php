@@ -70,7 +70,30 @@ class Router {
     }
 
     private function checkUri(Request $request, string $uri): bool {
-        return $request->getUri() === $uri;
+        
+        $params = [];
+        $path = parse_url($request->getUri(), PHP_URL_PATH);
+        $pathParts = explode("/", $path);
+        $routeParts = explode("/", $uri);
+
+        if (count($pathParts) != count($routeParts)) {
+            return false;
+        }
+
+        foreach ($routeParts as $cle => $valeur) {
+
+            if (str_starts_with($valeur, "{") && str_ends_with($valeur, "}")){
+                $nom = trim($valeur, '{}');
+                $params[$nom] = urldecode($pathParts[$cle]);
+            } elseif ($valeur !== $pathParts[$cle]) {
+                return false;
+            }
+
+        }
+
+        $request->setRouteParams($params);
+
+        return true;
     }
     
     private function checkMethod(Request $request, string $method): bool {

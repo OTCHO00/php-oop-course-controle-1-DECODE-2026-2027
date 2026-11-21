@@ -7,6 +7,7 @@ class Request {
     private readonly string $method;
     private readonly array $headers;
     private readonly string $body;
+    private array $routeParams;
 
     public function __construct()
     {
@@ -14,6 +15,7 @@ class Request {
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->headers = getallheaders();
         $this->body = file_get_contents('php://input') ?: "";
+        $this->routeParams = [];
     }
 
     public function getUri(): string
@@ -34,5 +36,15 @@ class Request {
     public function getBody(): string 
     {
         return $this->body;
+    }
+
+    public function setRouteParams(array $params)
+    {
+        $this->routeParams = $params;
+    }
+
+    public function getRouteParam(string $name): ?string 
+    {
+        return $this->routeParams[$name] ?? null;
     }
 }
