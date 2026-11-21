@@ -13,5 +13,10 @@
     "uri": "/contact",
     "method": "GET",
     "controller": "Contact\\GetAllContact"
+  },
+  {
+    "uri": "/contact/{filename}",
+    "method": "GET",
+    "controller": "Contact\\GetContactById"
   }
 ]
